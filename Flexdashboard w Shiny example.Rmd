@@ -53,23 +53,23 @@ sliderInput("hp", "Horsepower",
 
 ### Histogram of weight
 
-```{r}
-radioButtons("plot_type", "Choose one",
-             choices = c("Histogram", "Violin"),
-             selected = c("Histogram"))
-
-renderPlot({
-  
-  if(input$plot_type == "Histogram"){
-    ggplot(mpg_subset(), aes(x = wt)) +
-      geom_histogram(binwidth = 0.25) +
-      coord_cartesian(xlim = range(mtcars$wt)) 
-  }
-  else {
-    ggplot(mpg_subset(), aes(y = wt, x = factor(1))) +
-      geom_violin()
-  }
-    
-})
+ ```{r}
+ radioButtons("plot_type", "Choose one",
+              choices = c("Histogram", "Violin"),
+              selected = c("Histogram"))
+ 
+ renderPlot({
+   
+   if(input$plot_type == "Histogram"){
+     ggplot(mpg_subset(), aes(x = wt)) +
+       geom_histogram(binwidth = 0.25) +
+       coord_cartesian(xlim = range(mtcars$wt)) 
+   }
+   else {
+     ggplot(mpg_subset(), aes(y = wt, x = factor(1))) +
+       geom_violin()
+   }
+     
+ })
 ```
 
