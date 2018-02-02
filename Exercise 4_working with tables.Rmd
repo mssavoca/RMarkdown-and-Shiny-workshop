@@ -1,0 +1,66 @@
+---
+title: "Exercise 4_working with tables"
+author: "Matt Savoca"
+date: "`r Sys.Date()`"
+output: 
+  html_document: 
+    highlight: pygments
+    theme: yeti
+    toc: yes
+    toc_float: TRUE
+    fig.width: 7
+    fig.height: 4
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load-packages, message=FALSE}
+library(tidyverse)
+```
+
+The data come from [Kaggle.com](https://www.kaggle.com/srcole/burritos-in-san-diego).
+
+```{r load-data, warning=FALSE, collapse=TRUE, include=FALSE}
+burritos <- read_csv("burritos_01022018.csv")
+```
+
+Let's clean up the `Burrito` variable first:
+
+```{r clean-burrito}
+burritos <- burritos %>%
+  mutate(Burrito = fct_lump(Burrito, n = 9))
+```
+
+Below is some standard table output:
+
+```{r}
+burritos %>%
+  count(Burrito) %>%
+  arrange(desc(n))
+```
+
+And the same output with `kable`:
+
+```{r}
+burritos %>%
+  count(Burrito) %>%
+  arrange(desc(n)) %>%
+  knitr::kable()
+```
+
+Another useful package is `DT`, especially for displaying tables of with large number of rows:
+
+```{r}
+burritos %>% 
+  select(Location, Burrito, Reviewer, overall) %>%
+    DT::datatable(
+    options = list(
+      searching = TRUE,
+      pageLength = 5,
+      lengthMenu = c(5,10,50)
+    ))
+```
+
+Other packages

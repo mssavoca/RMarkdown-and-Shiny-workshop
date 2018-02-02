@@ -1,0 +1,13 @@
+name: movies
+title: movies
+username:
+account: mattsavoca
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 269238
+bundleId: 1203718
+url: https://mattsavoca.shinyapps.io/movies/
+when: 1517527897.75591
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: app2.R|appAddingTabs.R|appTitleChange.R
